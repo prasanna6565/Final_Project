@@ -51,7 +51,7 @@ pipeline{
       steps {
            
         script {
-          kubernetesDeploy(configs: "statefulset.yaml", kubeconfigId: "mykubeconfig")
+          kubernetesDeploy(configs: "statefulset.yaml",)
         }
 
              }
