@@ -35,28 +35,28 @@ pipeline{
             }
         } 
 
-        stage('pushing to dockerhub')
-        {
-            when{
-                branch "prod"
-                }
-            steps{
-                sh 'docker tag capstone-img:1.01 naincykumari123/capstone:1.01 '
-                sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
+//         stage('pushing to dockerhub')
+//         {
+//             when{
+//                 branch "prod"
+//                 }
+//             steps{
+//                 sh 'docker tag capstone-img:1.01 naincykumari123/capstone:1.01 '
+//                 sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
 
-                sh 'docker push naincykumari123/capstone:1.01 '
-            }
-        }
-        stage('deploy')
-        {
-            when{
-                branch "prod"
-                }
-            steps{
-                script{
-                   kubernetesDeploy configs: '**/appdeploy.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
-                }
-            }
+//                 sh 'docker push naincykumari123/capstone:1.01 '
+//             }
+//         }
+//         stage('deploy')
+//         {
+//             when{
+//                 branch "prod"
+//                 }
+//             steps{
+//                 script{
+//                    kubernetesDeploy configs: '**/appdeploy.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+//                 }
+//             }
         }
         
     }
