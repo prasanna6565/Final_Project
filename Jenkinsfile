@@ -17,31 +17,21 @@ pipeline {
             }
        }
 
-   stage("packaging"){
-      when{
-             branch 'prod'
-          }
-            {
-
-                sh 'mvn package -DskipTests'
-            }
-
-   }
-      stage("building docker image"){
-       when{
-             branch 'prod'
-          }
+   stage(‘package’)
+{
+  when {
+    branch 'prod'
+  }
+    stages{
+      stage('building docker image')
+      {
         steps
-      
         {
           sh 'docker build -t naincykumari123/capstone:${GIT_COMMIT} . '
         }
       }
-         stage('pushing docker image'){
-          when{
-             branch 'prod'
-          }
-      
+      stage('pushing docker image')
+      {
         steps{
           sh '''
           echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin
@@ -52,8 +42,7 @@ pipeline {
         }
       }
     }
-           
-        
-       }
-   
+}
 
+}
+}
