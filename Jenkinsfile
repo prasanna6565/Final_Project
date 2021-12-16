@@ -47,14 +47,15 @@ pipeline{
             }
         }
        
-         stage('deploy')
-         {
-             when{
-                 branch "prod"
-                 }
-            script {
-                 kubernetesDeploy(configs: "statefulset.yaml", kubeconfigId: "mykubeconfig")
-                  }
+         stage('Deploy App') {
+      steps {
+           when{
+                branch "prod"
+                }
+        script {
+          kubernetesDeploy(configs: "statefulset.yaml", kubeconfigId: "mykubeconfig")
+        }
+
              }
         }
         
