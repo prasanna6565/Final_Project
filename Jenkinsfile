@@ -36,7 +36,7 @@ pipeline {
         {
           sh 'docker build -t naincykumari123/capstone:${GIT_COMMIT} . '
         }
-      
+      }
          stage('pushing docker image'){
           when{
              branch 'prod'
