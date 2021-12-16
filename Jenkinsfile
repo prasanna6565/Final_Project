@@ -8,9 +8,6 @@ pipeline {
    environment {
       dockerhub=credentials('dockerhub')
    }
-   environment {
-      dockerhub=credentials('dockerhub')
-   }
    stages{
        stage("clean"){
       
