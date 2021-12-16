@@ -46,17 +46,17 @@ pipeline{
                 sh 'docker push naincykumari123/capstone:1.01 '
             }
         }
-//         
-//         stage('deploy')
-//         {
-//             when{
-//                 branch "prod"
-//                 }
-//             steps{
-//                 script{
-//                    kubernetesDeploy configs: '**/appdeploy.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
-//                 }
-//             }
+       
+         stage('deploy')
+         {
+             when{
+                 branch "prod"
+                 }
+             steps{
+                 script{
+                    kubernetesDeploy configs: '**/statefulset.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+                }
+             }
         }
         
     }
