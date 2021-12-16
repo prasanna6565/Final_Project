@@ -8,6 +8,9 @@ pipeline {
    environment {
       dockerhub=credentials('dockerhub')
    }
+   environment {
+      dockerhub=credentials('dockerhub')
+   }
    stages{
        stage("clean"){
       
@@ -21,11 +24,11 @@ pipeline {
       when{
              branch 'prod'
           }
-       steps
             {
 
                 sh 'mvn package -DskipTests'
             }
+
    }
       stage("building docker image"){
        when{
