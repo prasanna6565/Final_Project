@@ -5,19 +5,16 @@ metadata:
   name: service1
   labels:
     app: myweb
-
-
 spec:
   ports:
   - port: 80
     protocol: TCP
-  clusterIP: None
   selector:
     app: myweb
 
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   labels:
     app: myweb
@@ -28,7 +25,6 @@ spec:
 
     matchLabels:
       app: myweb
-  serviceName: "service1"
   template:
     metadata:
       labels:
