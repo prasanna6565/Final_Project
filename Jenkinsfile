@@ -50,9 +50,7 @@ pipeline{
          stage('Deploy App') {
       steps {
            
-        script {
-          kubernetesDeploy(configs: "statefulset.yaml",)
-        }
+        kubernetesDeploy configs: '**/statefulset.yaml', kubeConfig: [path: ''], kubeconfigId: 'kube', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
 
              }
         }
