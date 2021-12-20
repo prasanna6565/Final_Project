@@ -5,21 +5,30 @@ kind: Deployment
 metadata:
   labels:
     app: myweb
-  name: myweb
+  name: capstone
 spec:
   replicas: 1
   selector:
-
     matchLabels:
-      app: myweb
-    serviceName: "service1"
-
+      app: capstone
   template:
     metadata:
       labels:
-        app: myweb
+        app: capstone
     spec:
       containers:
         - image: naincykumari123/capstone:1.01
-          imagePullPolicy: IfNotPresent
           name: myweb
+          ports:
+            - containerPort: 8081
+          env:
+          - name: SQL_URL
+            value: mysql-0.sql-headless.default.svc.cluster.local
+          - name: SQL_PORT
+            value: "3306"
+          - name: SQL_USR
+            value: "user"
+          - name: SQL_PW
+            value: "root@1234"
+          - name: SQL_TABLE
+            value: "mydb"
