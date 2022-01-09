@@ -8,7 +8,7 @@ jobs:
 
     steps:
 
-      - run: mvn clean
+      - run: echo "hello"
 
       - run: mvn test
 
