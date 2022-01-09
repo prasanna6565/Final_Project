@@ -1,6 +1,13 @@
 name: Test
 
-on: ['pull_request']
+on:
+  pull_request:
+    branches:
+    - master
+    - feature
+    - dev
+    - test
+    - prod
 
 jobs:
   build:
@@ -8,9 +15,6 @@ jobs:
 
     steps:
 
-      - run: echo "hello"
+      - run: echo "hello world"
 
-      - run: mvn test
-
-      - run: mvn build
-
+   
