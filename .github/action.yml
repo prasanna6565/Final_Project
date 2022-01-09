@@ -1,0 +1,14 @@
+name: Test
+
+on: ['pull_request']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+      - run: mvn clean
+
+      - run: mvn test
+
+      - run: mvn build
+
