@@ -18,7 +18,7 @@ pipeline{
 		stage('Build') {
 
 			steps {
-				sh 'docker build -t prasanna2121/nodeapp_test:latest .'
+				sh 'docker build -t prasanna2121/centos:latest .'
 			}
 		}
 
@@ -32,7 +32,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				sh 'docker push prasanna2121/nodeapp_test:latest'
+				sh 'docker push prasanna2121/centos:latest'
 			}
 		}
 	}
